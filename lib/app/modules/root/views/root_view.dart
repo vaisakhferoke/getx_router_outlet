@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:router_outlet/app/routes/app_pages.dart';
 
 import '../controllers/root_controller.dart';
 
@@ -13,9 +14,14 @@ class RootView extends GetView<RootController> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'RootView is working',
-          style: TextStyle(fontSize: 20),
+        child: InkWell(
+          onTap: (){
+            Get.toNamed(Routes.HOME);
+          },
+          child: Text(
+            'Go Home',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );
