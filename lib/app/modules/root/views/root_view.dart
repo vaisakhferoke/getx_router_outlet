@@ -6,24 +6,34 @@ import 'package:router_outlet/app/routes/app_pages.dart';
 import '../controllers/root_controller.dart';
 
 class RootView extends GetView<RootController> {
+  const RootView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('RootView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: InkWell(
-          onTap: (){
-            Get.toNamed(Routes.HOME);
-          },
-          child: Text(
-            'Go Home',
-            style: TextStyle(fontSize: 20),
-          ),
+    return GetRouterOutlet.builder(builder: (context, delegate, dfdff) {
+      return Scaffold(
+        body: GetRouterOutlet(
+          initialRoute: Routes.FIRST,
+          anchorRoute: Routes.SECOND,
+          key: Get.nestedKey(Routes.HOME),
         ),
-      ),
-    );
+        bottomNavigationBar: Row(
+          children: [
+            TextButton(
+              onPressed: () {
+                 delegate.toNamed(Routes.FIRST);
+              },
+              child: const Text("First"),
+            ),
+            TextButton(
+              onPressed: () {
+               delegate.toNamed(Routes.SECOND);
+              },
+              child: const Text("Second"),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
